@@ -10,6 +10,9 @@ import {
   TableBody,
   Icon,
   IconButton,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Delete } from "@material-ui/icons";
@@ -55,6 +58,7 @@ const CommentsList = () => {
   return (
     <>
       <TableContainer component={Paper}>
+
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -66,7 +70,7 @@ const CommentsList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {commentsList.map((comment) => (
+            {commentsList.length>0 ? commentsList.map((comment) => (
               <TableRow key={comment.id}>
                 <TableCell align="left">
                   {" "}
@@ -85,7 +89,13 @@ const CommentsList = () => {
                   </IconButton>{" "}
                 </TableCell>
               </TableRow>
-            ))}
+            )) : (
+              <List component="nav">
+            <ListItem>
+              <ListItemText align="center">Комментариев пока нет</ListItemText>
+            </ListItem>
+          </List>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
